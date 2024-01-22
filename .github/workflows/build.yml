@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+
+jobs:
+  build:
+    name: Build
+    uses: soat-tech-challenge/github-workflows/.github/workflows/maven-bump-push-dockerhub.yml@main
+    secrets: inherit
+    with:
+      dockerhub_username: ${{ vars.DOCKERHUB_USERNAME }}
+      image_name: ${{ vars.DOCKER_IMAGE_NAME }}
+
+  deploy:
+    name: Deploy
+    needs: build
+    uses: soat-tech-challenge/github-workflows/.github/workflows/redeploy-ecs-service.yml@main
+    secrets: inherit
+    with:
+      aws_region: ${{ vars.DEFAULT_AWS_REGION }}
+      cluster_name: ${{ vars.ECS_CLUSTER_NAME }}
+      service_name: ${{ vars.ECS_SERVICE_NAME }}
