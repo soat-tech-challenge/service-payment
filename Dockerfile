@@ -2,13 +2,13 @@
 FROM bellsoft/liberica-runtime-container:jre-17-slim-musl
 
 # Creates and switches to non-root user
-ENV APP_USER=backend
+ENV APP_USER=app
 # Busybox syntax, which is available in the image
 RUN addgroup -S $APP_USER && adduser -D -g "" -G $APP_USER $APP_USER
-USER backend
+USER app
 
 # Copy .jar to container
-ARG JAR_FILE=target/app.jar
+ARG JAR_FILE=target/*.jar
 ENV APP_FOLDER=/opt/app
 WORKDIR $APP_FOLDER
 COPY $JAR_FILE app.jar
