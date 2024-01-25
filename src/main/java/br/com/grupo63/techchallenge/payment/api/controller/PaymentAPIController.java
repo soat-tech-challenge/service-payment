@@ -30,7 +30,7 @@ public class PaymentAPIController extends AbstractAPIController {
     @PostMapping("/initialize")
     public QRCodeResponseDTO startPayment(
             @Parameter(description = "Id do pedido") @RequestParam Long orderId
-    ) throws NotFoundException, ValidationException {
+    ) throws NotFoundException {
         return controller.startPayment(orderId);
     }
 

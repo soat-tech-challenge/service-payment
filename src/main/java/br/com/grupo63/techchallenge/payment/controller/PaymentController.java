@@ -13,22 +13,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentController {
 
-    private final OrderUseCase orderUseCase;
     private final PaymentUseCase useCase;
 
-    public QRCodeResponseDTO startPayment(Long orderId) throws NotFoundException, ValidationException {
-        Order entity = orderUseCase.read(orderId);
-        return PaymentPresenter.toDto(useCase.startPayment(entity));
+    public QRCodeResponseDTO startPayment(Long orderId) throws NotFoundException {
+        return PaymentPresenter.toDto(useCase.startPayment(orderId));
     }
 
     public void finishPayment(Long orderId) throws NotFoundException, ValidationException {
-        Order entity = orderUseCase.read(orderId);
-        useCase.finishPayment(entity);
+        useCase.finishPayment(orderId);
     }
 
     public PaymentStatusResponseDTO getPaymentStatus(Long orderId) throws NotFoundException, ValidationException {
-        Order entity = orderUseCase.read(orderId);
-        return PaymentPresenter.toDto(useCase.getPaymentStatus(entity));
+        return PaymentPresenter.toDto(useCase.getPaymentStatus(orderId));
     }
 
 }

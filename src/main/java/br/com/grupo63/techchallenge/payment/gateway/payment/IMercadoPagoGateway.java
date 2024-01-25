@@ -1,4 +1,4 @@
-package br.com.grupo63.techchallenge.payment.gateway;
+package br.com.grupo63.techchallenge.payment.gateway.payment;
 
 public interface IMercadoPagoGateway {
 

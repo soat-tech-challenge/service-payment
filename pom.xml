@@ -10,17 +10,25 @@
 	</parent>
 	<groupId>br.com.grupo63.techchallenge</groupId>
 	<artifactId>service-payment</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>4.0.0</version>
 	<name>service-payment</name>
 	<description>FIAP SOAT1 2023 - Group 63 - Payment microservice</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
-			<groupId>br.com.grupo63.techchallenge</groupId>
-			<artifactId>soat-tech-challenge-common</artifactId>
-			<version>1.0.0</version>
+			<groupId>com.github.soat-tech-challenge</groupId>
+			<artifactId>service-common</artifactId>
+			<version>4.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -93,6 +101,11 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>4.0.4</version>
 		</dependency>
 	</dependencies>
 

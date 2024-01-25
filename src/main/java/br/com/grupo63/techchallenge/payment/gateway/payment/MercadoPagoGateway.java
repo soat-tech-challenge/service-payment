@@ -1,4 +1,4 @@
-package br.com.grupo63.techchallenge.payment.gateway;
+package br.com.grupo63.techchallenge.payment.gateway.payment;
 
 import org.springframework.stereotype.Service;
 
