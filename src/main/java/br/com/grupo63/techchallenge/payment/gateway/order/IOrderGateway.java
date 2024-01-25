@@ -1,16 +1,17 @@
 package br.com.grupo63.techchallenge.payment.gateway.order;
 
 import br.com.grupo63.techchallenge.payment.gateway.order.dto.OrderDTO;
-import feign.Param;
-import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient("order")
+@FeignClient(name = "order", url = "/")
 public interface IOrderGateway {
 
-    @RequestLine("GET /orders/{orderId}")
-    Optional<OrderDTO> getOrderById(@Param("orderId") Long orderId);
+    @RequestMapping(method = RequestMethod.GET, value = "/public/orders/{orderId}")
+    Optional<OrderDTO> getOrderById(@PathVariable("orderId") Long orderId);
 
 }

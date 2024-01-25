@@ -29,11 +29,11 @@ public class PaymentPersistenceEntity extends PersistenceEntity {
     private Long orderId;
 
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "method", nullable = false)
     private PaymentMethod method;
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private PaymentStatus status;
 
