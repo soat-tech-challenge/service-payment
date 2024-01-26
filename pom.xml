@@ -185,6 +185,10 @@
 									<goal>report</goal>
 								</goals>
 								<configuration>
+									<excludes>
+										<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/PaymentStatusResponseDTO.class</exclude>
+										<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/QRCodeResponseDTO.class</exclude>
+									</excludes>
 									<formats>
 										<format>XML</format>
 									</formats>
