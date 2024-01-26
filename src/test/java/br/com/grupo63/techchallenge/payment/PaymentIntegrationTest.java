@@ -82,4 +82,14 @@ class PaymentIntegrationTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(response.getBody().getQrData(), qrData);
     }
+
+    @SneakyThrows
+    @Test
+    public void testfinishPayment_EndToEnd() {
+        when(paymentGateway.findByOrderId(defaultOrderId)).thenReturn(Optional.of(payment));
+        when(paymentJpaRepository.save(any())).thenReturn(defaultPaymentPersistenceEntity);
+
+        ResponseEntity response = paymentAPIController.confirmPaymentFromOrderId(defaultOrderId);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 }

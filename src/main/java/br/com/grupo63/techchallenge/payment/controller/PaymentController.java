@@ -19,11 +19,11 @@ public class PaymentController {
         return PaymentPresenter.toDto(useCase.startPayment(orderId));
     }
 
-    public void finishPayment(Long orderId) throws NotFoundException, ValidationException {
+    public void finishPayment(Long orderId) throws NotFoundException {
         useCase.finishPayment(orderId);
     }
 
-    public PaymentStatusResponseDTO getPaymentStatus(Long orderId) throws NotFoundException, ValidationException {
+    public PaymentStatusResponseDTO getPaymentStatus(Long orderId) throws NotFoundException {
         return PaymentPresenter.toDto(useCase.getPaymentStatus(orderId));
     }
 

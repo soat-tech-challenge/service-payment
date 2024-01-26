@@ -41,9 +41,10 @@ public class PaymentAPIController extends AbstractAPIController {
             description = "Atualiza o status do pagamento e do pedido. Seria utilizado pelo sistema externo Mercado Pago para simular uma integração de Webhook IPN para notificar o sistema que o pagamento foi concluido.")
     @PostMapping("/finalize")
     @ResponseStatus(HttpStatus.OK)
-    public void confirmPaymentFromOrderId(@Parameter(description = "Id do pedido associado ao pagamento")
-                                          @RequestParam Long orderId) throws ValidationException, NotFoundException {
+    public ResponseEntity confirmPaymentFromOrderId(@Parameter(description = "Id do pedido associado ao pagamento")
+                                          @RequestParam Long orderId) throws NotFoundException {
         controller.finishPayment(orderId);
+        return ResponseEntity.ok().build();
     }
 
     @Operation(
@@ -52,7 +53,7 @@ public class PaymentAPIController extends AbstractAPIController {
             description = "Recupera o status atual do pagamento. Seria utilizado na tela de pagamento do cliente para verificar se o pagamento foi realizado.")
     @GetMapping("/status")
     public ResponseEntity<PaymentStatusResponseDTO> getStatusByOrderId(@Parameter(description = "Id do pedido associado ao pagamento")
-                                                       @RequestParam Long orderId) throws NotFoundException, ValidationException {
+                                                       @RequestParam Long orderId) throws NotFoundException {
         return ResponseEntity.ok(controller.getPaymentStatus(orderId));
     }
 
