@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(name = "order", url = "/")
+@FeignClient(name = "order", url = "${soat-services.base-url}/orders}")
 public interface IOrderGateway {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/public/orders/{orderId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{orderId}")
     Optional<OrderDTO> getOrderById(@PathVariable("orderId") Long orderId);
 
 }

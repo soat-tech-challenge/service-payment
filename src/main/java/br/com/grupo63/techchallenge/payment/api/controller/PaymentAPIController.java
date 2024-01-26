@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Pagamentos", description = "Gerencia o processo de pagamento de um pedido")
@@ -28,10 +29,10 @@ public class PaymentAPIController extends AbstractAPIController {
             description = "Registra um pedido e o associa a um pedido. Retorna o QRCode gerado via Mercado Pago para exibição ao cliente.",
             security = @SecurityRequirement(name = "bearerAuth"))
     @PostMapping("/initialize")
-    public QRCodeResponseDTO startPayment(
+    public ResponseEntity<QRCodeResponseDTO> startPayment(
             @Parameter(description = "Id do pedido") @RequestParam Long orderId
     ) throws NotFoundException {
-        return controller.startPayment(orderId);
+        return ResponseEntity.ok(controller.startPayment(orderId));
     }
 
     @Operation(
@@ -50,9 +51,9 @@ public class PaymentAPIController extends AbstractAPIController {
             summary = "Recuperar status do pagamento",
             description = "Recupera o status atual do pagamento. Seria utilizado na tela de pagamento do cliente para verificar se o pagamento foi realizado.")
     @GetMapping("/status")
-    public PaymentStatusResponseDTO getStatusByOrderId(@Parameter(description = "Id do pedido associado ao pagamento")
+    public ResponseEntity<PaymentStatusResponseDTO> getStatusByOrderId(@Parameter(description = "Id do pedido associado ao pagamento")
                                                        @RequestParam Long orderId) throws NotFoundException, ValidationException {
-        return controller.getPaymentStatus(orderId);
+        return ResponseEntity.ok(controller.getPaymentStatus(orderId));
     }
 
 }
