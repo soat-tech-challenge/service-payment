@@ -172,6 +172,17 @@
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<version>0.8.11</version>
+						<configuration>
+							<excludes>
+								<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/PaymentStatusResponseDTO.class</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/QRCodeResponseDTO.class</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/order/dto/OrderDTO.java</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.class</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.class</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.class</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.class</exclude>
+							</excludes>
+						</configuration>
 						<executions>
 							<execution>
 								<id>prepare-agent</id>
@@ -185,14 +196,6 @@
 									<goal>report</goal>
 								</goals>
 								<configuration>
-									<excludes>
-										<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/PaymentStatusResponseDTO.class</exclude>
-										<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/QRCodeResponseDTO.class</exclude>
-										<exclude>**/br/com/grupo63/techchallenge/payment/gateway/order/dto/OrderDTO.class</exclude>
-										<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.class</exclude>
-										<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.class</exclude>
-										<exclude>**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.class</exclude>
-									</excludes>
 									<formats>
 										<format>XML</format>
 									</formats>
