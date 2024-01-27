@@ -16,7 +16,7 @@ public class PaymentJpaAdapter implements IPaymentGateway {
     public Payment saveAndFlush(Payment payment) {
         PaymentPersistenceEntity entity = new PaymentPersistenceEntity(payment);
 
-        entity = paymentJpaRepository.saveAndFlush(entity);
+        entity = paymentJpaRepository.save(entity);
 
         return entity.toModel();
     }

@@ -63,7 +63,6 @@ class PaymentIntegrationTest {
     public void testGetPaymentStatus_EndToEnd() {
         when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
         when(orderGateway.getOrderById(defaultOrderId)).thenReturn(Optional.of(orderDTO));
-        when(mercadoPagoGateway.generateQRCode(defaultOrderId, totalPrice)).thenReturn(qrData);
 
         ResponseEntity<PaymentStatusResponseDTO> response = paymentAPIController.getStatusByOrderId(defaultOrderId);
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -73,11 +72,13 @@ class PaymentIntegrationTest {
     @SneakyThrows
     @Test
     public void testStartPayment_EndToEnd() {
-        when(paymentJpaRepository.saveAndFlush(any())).thenReturn(defaultPaymentPersistenceEntity);
+        when(paymentJpaRepository.save(any())).thenReturn(defaultPaymentPersistenceEntity);
         when(orderGateway.getOrderById(defaultOrderId)).thenReturn(Optional.of(orderDTO));
+        when(mercadoPagoGateway.generateQRCode(defaultOrderId, totalPrice)).thenReturn(qrData);
 
         ResponseEntity<QRCodeResponseDTO> response = paymentAPIController.startPayment(defaultOrderId);
         assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(response.getBody().getQrData(), qrData);
     }
 
     @SneakyThrows
@@ -86,7 +87,7 @@ class PaymentIntegrationTest {
         when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
 
         payment.setStatus(PaymentStatus.PAID);
-        when(paymentJpaRepository.saveAndFlush(any())).thenReturn(defaultPaymentPersistenceEntity);
+        when(paymentJpaRepository.save(any())).thenReturn(defaultPaymentPersistenceEntity);
 
         ResponseEntity response = paymentAPIController.confirmPaymentFromOrderId(defaultOrderId);
         assertEquals(HttpStatus.OK, response.getStatusCode());

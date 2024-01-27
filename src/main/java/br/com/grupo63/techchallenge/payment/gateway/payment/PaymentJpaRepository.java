@@ -14,5 +14,4 @@ public interface PaymentJpaRepository extends JpaRepository<PaymentPersistenceEn
     @Query("SELECT p FROM PaymentPersistenceEntity p WHERE p.orderId = :orderId")
     Optional<PaymentPersistenceEntity> findByOrderId(Long orderId);
 
-    PaymentPersistenceEntity saveAndFlush(PaymentPersistenceEntity paymentPersistenceEntity);
 }
