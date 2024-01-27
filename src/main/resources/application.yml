@@ -1,0 +1,45 @@
+# Global config
+spring:
+  docker:
+    compose:
+      # We don't want to use docker compose in prod and test
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  profiles:
+    # Value comes from Maven profile (pom.xml)
+    active: '@spring.profiles.active@'
+  flyway:
+    locations: classpath:db/migrations/{vendor}/
+    enabled: true
+jwt:
+  token:
+    key:
+      public: "${JWT_PUBLIC_KEY}"
+
+springdoc:
+  swagger-ui:
+    path: /
+    tags-sorter: alpha
+  show-actuator: true
+management:
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-components: always
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+info:
+  name: '@project.name@'
+  description: '@project.description@'
+  version: '@project.version@'
+
+docs:
+  api:
+    url: "${DOCS_API_URL:https://9ah1j49vm1.execute-api.us-east-2.amazonaws.com}"

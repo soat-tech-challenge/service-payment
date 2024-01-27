@@ -1,0 +1,11 @@
+# This compose file is for development only!
+name: soat-tech-challenge-service-payment
+services:
+  db:
+    image: "postgres:15.4"
+    environment:
+      - "POSTGRES_DB=backend"
+      - "POSTGRES_PASSWORD=backend"
+      - "POSTGRES_USER=backend"
+    ports:
+      - 5432:5432
