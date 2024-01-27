@@ -30,17 +30,17 @@ class PaymentIntegrationTest {
 
     @Mock
     private PaymentJpaRepository paymentJpaRepository;
-
-    @InjectMocks
-    private PaymentJpaAdapter paymentJpaAdapter;
-    @Mock
-    private PaymentUseCase paymentUseCase;
     @Mock
     private IOrderGateway orderGateway;
     @Mock
     private MercadoPagoGateway mercadoPagoGateway;
+
+    @InjectMocks
+    private PaymentJpaAdapter paymentJpaAdapter;
+    private PaymentUseCase paymentUseCase;
     private PaymentController paymentController;
     private PaymentAPIController paymentAPIController;
+
 
     private final Long defaultOrderId = 1L;
     private final String qrData = UUID.randomUUID().toString();
@@ -63,6 +63,7 @@ class PaymentIntegrationTest {
     public void testGetPaymentStatus_EndToEnd() {
         when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
         when(orderGateway.getOrderById(defaultOrderId)).thenReturn(Optional.of(orderDTO));
+        when(mercadoPagoGateway.generateQRCode(defaultOrderId, totalPrice)).thenReturn(qrData);
 
         ResponseEntity<PaymentStatusResponseDTO> response = paymentAPIController.getStatusByOrderId(defaultOrderId);
         assertEquals(HttpStatus.OK, response.getStatusCode());
