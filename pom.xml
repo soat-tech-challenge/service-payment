@@ -19,20 +19,20 @@
 		<sonar.exclusions>
 			**/dto/**/*,
 			**/domain/**/*
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.class
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.class
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.class
-			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.class
+			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.java
+			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.java
+			**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.java
+			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.java
 		</sonar.exclusions>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.coverage.exclusions>
 			**/dto/**/*,
 			**/domain/**/*
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.class
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.class
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.class
-			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.class
+			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.java
+			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.java
+			**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.java
+			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.java
 		</sonar.coverage.exclusions>
 		<jacoco.version>0.7.5.201505241946</jacoco.version>
 	</properties>
@@ -159,6 +159,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M5</version>
 			</plugin>
+
 		</plugins>
 		<resources>
 			<resource>
