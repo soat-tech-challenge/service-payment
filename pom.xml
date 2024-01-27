@@ -25,6 +25,7 @@
 			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.java
 		</sonar.exclusions>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.coverage.exclusions>
 			**/dto/**/*,
@@ -34,7 +35,7 @@
 			**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.java
 			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.java
 		</sonar.coverage.exclusions>
-		<jacoco.version>0.7.5.201505241946</jacoco.version>
+		<jacoco.version>0.8.11</jacoco.version>
 	</properties>
 
 	<repositories>
