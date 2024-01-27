@@ -60,7 +60,7 @@ class PaymentIntegrationTest {
 
     @SneakyThrows
     @Test
-    public void testGetPaymentStatus_EndToEnd() {
+    void testGetPaymentStatus_EndToEnd() {
         when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
         when(orderGateway.getOrderById(defaultOrderId)).thenReturn(Optional.of(orderDTO));
 
@@ -71,7 +71,7 @@ class PaymentIntegrationTest {
 
     @SneakyThrows
     @Test
-    public void testStartPayment_EndToEnd() {
+    void testStartPayment_EndToEnd() {
         when(paymentJpaRepository.save(any())).thenReturn(defaultPaymentPersistenceEntity);
         when(orderGateway.getOrderById(defaultOrderId)).thenReturn(Optional.of(orderDTO));
         when(mercadoPagoGateway.generateQRCode(defaultOrderId, totalPrice)).thenReturn(qrData);
@@ -83,7 +83,7 @@ class PaymentIntegrationTest {
 
     @SneakyThrows
     @Test
-    public void testfinishPayment_EndToEnd() {
+    void testfinishPayment_EndToEnd() {
         when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
 
         payment.setStatus(PaymentStatus.PAID);

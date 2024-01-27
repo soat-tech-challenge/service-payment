@@ -1,7 +1,6 @@
 package br.com.grupo63.techchallenge.payment.gateway.payment;
 
 import br.com.grupo63.techchallenge.common.gateway.repository.IJpaRepository;
-import br.com.grupo63.techchallenge.payment.domain.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
