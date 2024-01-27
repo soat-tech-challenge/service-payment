@@ -15,6 +15,10 @@
 	<description>FIAP SOAT1 2023 - Group 63 - Payment microservice</description>
 	<properties>
 		<java.version>17</java.version>
+
+		<sonar.coverage.exclusions>
+			**/config/*
+		</sonar.coverage.exclusions>
 	</properties>
 
 	<repositories>
@@ -28,7 +32,7 @@
 		<dependency>
 			<groupId>com.github.soat-tech-challenge</groupId>
 			<artifactId>service-common</artifactId>
-			<version>4.1.0</version>
+			<version>4.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -178,6 +182,8 @@
 								<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/PaymentStatusResponseDTO.class</exclude>
 								<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/QRCodeResponseDTO.class</exclude>
 								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/order/dto/OrderDTO.class</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/config/JwtFilterConfig.class</exclude>
+								<exclude>**/br/com/grupo63/techchallenge/payment/config/JwtService.class</exclude>
 								<exclude>**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.class</exclude>
 							</excludes>
 						</configuration>
