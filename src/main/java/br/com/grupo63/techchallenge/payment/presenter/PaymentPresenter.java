@@ -7,11 +7,17 @@ import br.com.grupo63.techchallenge.payment.domain.PaymentStatus;
 public class PaymentPresenter {
 
     public static QRCodeResponseDTO toDto(String qrCode) {
-        return new QRCodeResponseDTO(qrCode);
+        QRCodeResponseDTO qrCodeResponseDTO = new QRCodeResponseDTO();
+
+        qrCodeResponseDTO.setQrData(qrCode);
+        return qrCodeResponseDTO;
     }
 
     public static PaymentStatusResponseDTO toDto(PaymentStatus status) {
-        return new PaymentStatusResponseDTO(status);
+        PaymentStatusResponseDTO dto = new PaymentStatusResponseDTO();
+
+        dto.setStatus(status);
+        return dto;
     }
 
 

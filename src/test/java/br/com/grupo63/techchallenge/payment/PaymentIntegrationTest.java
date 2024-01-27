@@ -73,7 +73,7 @@ class PaymentIntegrationTest {
     @SneakyThrows
     @Test
     void testStartPayment_EndToEnd() {
-        when(paymentJpaRepository.save(any())).thenReturn(defaultPaymentPersistenceEntity);
+        when(paymentJpaRepository.save(any())).thenReturn(new PaymentPersistenceEntity(qrData, defaultOrderId, PaymentMethod.MERCADO_PAGO_QR_CODE, PaymentStatus.PENDING));
         when(orderGateway.getOrderById(defaultOrderId)).thenReturn(Optional.of(orderDTO));
 
         ResponseEntity<QRCodeResponseDTO> response = paymentAPIController.startPayment(defaultOrderId);
@@ -83,7 +83,7 @@ class PaymentIntegrationTest {
 
     @SneakyThrows
     @Test
-    void testfinishPayment_EndToEnd() {
+    void testFinishPayment_EndToEnd() {
         when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
 
         payment.setStatus(PaymentStatus.PAID);
