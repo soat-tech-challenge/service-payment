@@ -15,27 +15,6 @@
 	<description>FIAP SOAT1 2023 - Group 63 - Payment microservice</description>
 	<properties>
 		<java.version>17</java.version>
-
-		<sonar.exclusions>
-			**/dto/**/*,
-			**/domain/**/*
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.java
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.java
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.java
-			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.java
-		</sonar.exclusions>
-		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
-		<sonar.coverage.exclusions>
-			**/dto/**/*,
-			**/domain/**/*
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.java
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.java
-			**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.java
-			**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.java
-		</sonar.coverage.exclusions>
-		<jacoco.version>0.8.11</jacoco.version>
 	</properties>
 
 	<repositories>
@@ -200,8 +179,6 @@
 								<exclude>**/br/com/grupo63/techchallenge/payment/api/controller/dto/QRCodeResponseDTO.class</exclude>
 								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/order/dto/OrderDTO.class</exclude>
 								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentPersistenceEntity.class</exclude>
-								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/PaymentJpaAdapter.class</exclude>
-								<exclude>**/br/com/grupo63/techchallenge/payment/gateway/payment/MercadoPagoGateway.class</exclude>
 								<exclude>**/br/com/grupo63/techchallenge/payment/ServicePaymentApplication.class</exclude>
 							</excludes>
 						</configuration>
