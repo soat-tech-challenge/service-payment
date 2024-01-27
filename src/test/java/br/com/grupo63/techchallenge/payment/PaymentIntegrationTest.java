@@ -38,9 +38,7 @@ class PaymentIntegrationTest {
     @Mock
     private IOrderGateway orderGateway;
     @Mock
-    private IMercadoPagoGateway mercadoPagoGateway;
-    @Mock
-    private IPaymentGateway paymentGateway;
+    private MercadoPagoGateway mercadoPagoGateway;
     private PaymentController paymentController;
     private PaymentAPIController paymentAPIController;
 
@@ -55,7 +53,7 @@ class PaymentIntegrationTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        paymentUseCase = new PaymentUseCase(mercadoPagoGateway, orderGateway, paymentGateway);
+        paymentUseCase = new PaymentUseCase(mercadoPagoGateway, orderGateway, paymentJpaAdapter);
         paymentController = new PaymentController(paymentUseCase);
         paymentAPIController = new PaymentAPIController(paymentController);
     }
@@ -63,7 +61,7 @@ class PaymentIntegrationTest {
     @SneakyThrows
     @Test
     public void testGetPaymentStatus_EndToEnd() {
-        when(paymentGateway.findByOrderId(defaultOrderId)).thenReturn(Optional.of(payment));
+        when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
         when(orderGateway.getOrderById(defaultOrderId)).thenReturn(Optional.of(orderDTO));
 
         ResponseEntity<PaymentStatusResponseDTO> response = paymentAPIController.getStatusByOrderId(defaultOrderId);
@@ -84,30 +82,13 @@ class PaymentIntegrationTest {
     @SneakyThrows
     @Test
     public void testfinishPayment_EndToEnd() {
-        when(paymentGateway.findByOrderId(defaultOrderId)).thenReturn(Optional.of(payment));
+        when(paymentJpaRepository.findByOrderId(defaultOrderId)).thenReturn(Optional.of(defaultPaymentPersistenceEntity));
+
+        payment.setStatus(PaymentStatus.PAID);
+        when(paymentJpaRepository.saveAndFlush(any())).thenReturn(defaultPaymentPersistenceEntity);
 
         ResponseEntity response = paymentAPIController.confirmPaymentFromOrderId(defaultOrderId);
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
-//    @SneakyThrows
-//    @Test
-//    public void testUpdate_EndToEnd() {
-//        when(clientJpaRepository.findByIdAndDeletedFalse(defaultClientPersistenceEntity.getId())).thenReturn(Optional.of(defaultClientPersistenceEntity));
-//
-//        ClientControllerDTO clientControllerDTO = new ClientControllerDTO();
-//
-//        clientControllerDTO.setId(defaultClientPersistenceEntity.getId());
-//        clientControllerDTO.setNationalId("11111111111");
-//
-//        when(clientJpaRepository.save(any())).thenReturn(new ClientPersistenceEntity(defaultClientPersistenceEntity.getId(), defaultClientPersistenceEntity.isDeleted(), clientControllerDTO.getNationalId()));
-//
-//        ResponseEntity<ClientControllerDTO> response = clientAPIController.update(clientControllerDTO, defaultClientPersistenceEntity.getId());
-//
-//        assertEquals(HttpStatus.OK, response.getStatusCode());
-//        assertNotNull(response.getBody());
-//        assertEquals(response.getBody().getNationalId(), clientControllerDTO.getNationalId());
-//        verify(clientJpaRepository, times(1)).findByIdAndDeletedFalse(any());
-//        verify(clientJpaRepository, times(1)).save(any());
-//    }
 }
