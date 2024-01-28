@@ -8,6 +8,7 @@ import br.com.grupo63.techchallenge.payment.gateway.order.IOrderGateway;
 import br.com.grupo63.techchallenge.payment.gateway.order.dto.OrderDTO;
 import br.com.grupo63.techchallenge.payment.gateway.payment.IMercadoPagoGateway;
 import br.com.grupo63.techchallenge.payment.gateway.payment.IPaymentGateway;
+import br.com.grupo63.techchallenge.payment.gateway.status.IStatusGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class PaymentUseCase implements IPaymentUseCase {
     private final IMercadoPagoGateway mercadoPagoGateway;
     private final IOrderGateway orderGateway;
     private final IPaymentGateway paymentGateway;
+    private final IStatusGateway statusGateway;
 
     @Override
     public String startPayment(Long orderId) throws NotFoundException {
@@ -38,6 +40,8 @@ public class PaymentUseCase implements IPaymentUseCase {
 
         payment.setStatus(PaymentStatus.PAID);
         paymentGateway.saveAndFlush(payment);
+
+        statusGateway.advanceStatus(orderId);
 
     }
 

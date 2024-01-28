@@ -10,6 +10,7 @@ import br.com.grupo63.techchallenge.payment.domain.PaymentStatus;
 import br.com.grupo63.techchallenge.payment.gateway.order.IOrderGateway;
 import br.com.grupo63.techchallenge.payment.gateway.order.dto.OrderDTO;
 import br.com.grupo63.techchallenge.payment.gateway.payment.*;
+import br.com.grupo63.techchallenge.payment.gateway.status.IStatusGateway;
 import br.com.grupo63.techchallenge.payment.usecase.PaymentUseCase;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +33,8 @@ class PaymentIntegrationTest {
     private PaymentJpaRepository paymentJpaRepository;
     @Mock
     private IOrderGateway orderGateway;
+    @Mock
+    private IStatusGateway statusGateway;
 
     @InjectMocks
     private PaymentJpaAdapter paymentJpaAdapter;
@@ -54,7 +57,7 @@ class PaymentIntegrationTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         mercadoPagoGateway = new MercadoPagoGateway();
-        paymentUseCase = new PaymentUseCase(mercadoPagoGateway, orderGateway, paymentJpaAdapter);
+        paymentUseCase = new PaymentUseCase(mercadoPagoGateway, orderGateway, paymentJpaAdapter, statusGateway);
         paymentController = new PaymentController(paymentUseCase);
         paymentAPIController = new PaymentAPIController(paymentController);
     }
