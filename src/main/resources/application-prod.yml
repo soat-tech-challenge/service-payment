@@ -6,3 +6,5 @@ spring:
     username: ${DB_USERNAME:backend}
   devtools:
     add-properties: false
+urls:
+  baseurl: '/'
