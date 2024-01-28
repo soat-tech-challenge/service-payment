@@ -6,7 +6,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class JwtFilterConfig {
@@ -18,7 +18,7 @@ public class JwtFilterConfig {
     public FilterRegistrationBean<JwtFilter> jwtFilterFilterRegistrationBean() {
         FilterRegistrationBean<JwtFilter> jwtFilterFilterRegistrationBean = new FilterRegistrationBean<>();
         jwtFilterFilterRegistrationBean.setFilter(new JwtFilter(jwtService));
-        jwtFilterFilterRegistrationBean.setUrlPatterns(Arrays.asList("/orders", "/payments/initialize"));
+        jwtFilterFilterRegistrationBean.setUrlPatterns(List.of("/payments/initialize"));
         return jwtFilterFilterRegistrationBean;
     }
 }
