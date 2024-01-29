@@ -14,10 +14,6 @@ spring:
   flyway:
     locations: classpath:db/migrations/{vendor}/
     enabled: true
-jwt:
-  token:
-    key:
-      public: "${JWT_PUBLIC_KEY}"
 
 springdoc:
   swagger-ui:
@@ -31,19 +27,31 @@ management:
   endpoint:
     health:
       show-components: always
+    shutdown:
+      enabled: true # For debugging
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: health, info, metrics, shutdown
+server:
+  servlet:
+    context-path: "/payment"
+  port: 8003
+
+# --- Custom keys ---
+
+app:
+  docs-api-url: "${DOCS_API_URL:(no value)}"
+  api-url:
+    order: "${API_URL_ORDER}"
+    production: "${API_URL_PRODUCTION}"
+
 info:
-  name: '@project.name@'
-  description: '@project.description@'
-  version: '@project.version@'
+  name: "@project.name@"
+  description: "@project.description@"
+  version: "@project.version@"
 
-docs:
-  api:
-    url: "${DOCS_API_URL:https://9ah1j49vm1.execute-api.us-east-2.amazonaws.com}"
-
-urls:
-  status: '/production/status'
-  orders: '/order/orders'
+jwt:
+  token:
+    key:
+      public: "${JWT_PUBLIC_KEY}"
