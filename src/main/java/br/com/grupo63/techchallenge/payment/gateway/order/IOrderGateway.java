@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(name = "orders", url = "${urls.baseurl}")
+@FeignClient(name = "orders", url = "${urls.baseurl-order}")
 public interface IOrderGateway {
 
     @RequestMapping(method = RequestMethod.GET, value = "${urls.orders}/{orderId}")

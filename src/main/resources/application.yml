@@ -45,5 +45,5 @@ docs:
     url: "${DOCS_API_URL:https://9ah1j49vm1.execute-api.us-east-2.amazonaws.com}"
 
 urls:
-  status: '/public/status'
-  orders: '/public/orders'
+  status: '/production/status'
+  orders: '/order/orders'
