@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(name = "orders", url = "${urls.baseurl-order}")
+@FeignClient(name = "orders", url = "${app.api-url.order}")
 public interface IOrderGateway {
 
-    @RequestMapping(method = RequestMethod.GET, value = "${urls.orders}/{orderId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/orders/{orderId}")
     Optional<OrderDTO> getOrderById(@PathVariable("orderId") Long orderId);
 
 }
