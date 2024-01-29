@@ -25,9 +25,9 @@ public class PaymentUseCase implements IPaymentUseCase {
     public String startPayment(Long orderId) throws NotFoundException {
         OrderDTO orderDTO = orderGateway.getOrderById(orderId).orElseThrow(NotFoundException::new);
 
-        String qrData = mercadoPagoGateway.generateQRCode(orderDTO.getId(), orderDTO.getTotalPrice());
+        String qrData = mercadoPagoGateway.generateQRCode(orderId, orderDTO.getTotalPrice());
 
-        Payment payment = new Payment(null, false, PaymentStatus.PENDING, PaymentMethod.MERCADO_PAGO_QR_CODE, qrData, orderDTO.getId());
+        Payment payment = new Payment(null, false, PaymentStatus.PENDING, PaymentMethod.MERCADO_PAGO_QR_CODE, qrData, orderId);
 
         paymentGateway.saveAndFlush(payment);
 

@@ -48,7 +48,7 @@ class PaymentIntegrationTest {
     private final Long defaultOrderId = 1L;
     private final String qrData = UUID.randomUUID().toString();
     private final Double totalPrice = 100.00;
-    private final OrderDTO orderDTO = new OrderDTO(defaultOrderId, totalPrice);
+    private final OrderDTO orderDTO = new OrderDTO(totalPrice);
     private final Payment payment = new Payment(1L, false, PaymentStatus.PENDING, PaymentMethod.MERCADO_PAGO_QR_CODE, qrData, defaultOrderId);
     private final PaymentPersistenceEntity defaultPaymentPersistenceEntity =
             new PaymentPersistenceEntity(payment);
