@@ -14,6 +14,15 @@ spring:
   flyway:
     locations: classpath:db/migrations/{vendor}/
     enabled: true
+  cloud:
+    aws:
+      credentials:
+        access-key: "${AWS_ACCESS_KEY:accesskey}"
+        secret-key: "${AWS_SECRET_KEY:secretkey}"
+      region:
+        static: "${AWS_REGION:us-east-2}"
+      sqs:
+        endpoint: "${AWS_SQS_ENDPOINT:endpoint}"
 
 springdoc:
   swagger-ui:
