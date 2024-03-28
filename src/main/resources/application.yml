@@ -10,7 +10,7 @@ spring:
     show-sql: true
   profiles:
     # Value comes from Maven profile (pom.xml)
-    active: '@spring.profiles.active@'
+    active: "@spring.profiles.active@"
   flyway:
     locations: classpath:db/migrations/{vendor}/
     enabled: true
@@ -50,6 +50,8 @@ server:
 # --- Custom keys ---
 
 app:
+  aws:
+    session-token: "${AWS_SESSION_TOKEN:}"
   docs-api-url: "${DOCS_API_URL:(no value)}"
   api-url:
     order: "${API_URL_ORDER}"
