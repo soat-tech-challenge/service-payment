@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.grupo63.techchallenge</groupId>
 	<artifactId>service-payment</artifactId>
-	<version>5.0.2</version>
+	<version>5.0.3</version>
 	<name>Service Payment</name>
 	<description>FIAP SOAT1 2023 - Group 63 - Phase 5 - Payment microservice</description>
 	<properties>
