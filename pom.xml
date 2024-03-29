@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>com.github.soat-tech-challenge</groupId>
 			<artifactId>service-common</artifactId>
-			<version>5.1.1</version>
+			<version>5.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
