@@ -6,3 +6,6 @@ spring:
     username: ${DB_USERNAME:backend}
   devtools:
     add-properties: false
+
+info:
+  ecs_metadata_url_v4: "${ECS_CONTAINER_METADATA_URI_V4:unknown}"

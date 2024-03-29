@@ -50,6 +50,8 @@ server:
 # --- Custom keys ---
 
 app:
+  auth:
+    jwt_public_key: "${JWT_PUBLIC_KEY}"
   aws:
     session-token: "${AWS_SESSION_TOKEN:}"
   docs-api-url: "${DOCS_API_URL:(no value)}"
@@ -62,7 +64,3 @@ info:
   description: "@project.description@"
   version: "@project.version@"
 
-jwt:
-  token:
-    key:
-      public: "${JWT_PUBLIC_KEY}"

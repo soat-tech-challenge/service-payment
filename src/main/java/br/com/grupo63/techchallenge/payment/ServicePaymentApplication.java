@@ -1,5 +1,7 @@
 package br.com.grupo63.techchallenge.payment;
 
+import br.com.grupo63.techchallenge.common.config.auth.jwt.JwtService;
+import br.com.grupo63.techchallenge.common.config.aws.ecs.ECSTaskIdInfoContributor;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -10,7 +12,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
 @EnableFeignClients
 @OpenAPIDefinition(
 		info = @Info(title = "${info.name}", description = "${info.description}", version = "${info.version}"),
@@ -27,6 +28,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 		bearerFormat = "JWT",
 		in = SecuritySchemeIn.HEADER
 )
+@SpringBootApplication(scanBasePackageClasses = {
+		ServicePaymentApplication.class,
+		JwtService.class,
+		ECSTaskIdInfoContributor.class
+})
 public class ServicePaymentApplication {
 
 	public static void main(String[] args) {
